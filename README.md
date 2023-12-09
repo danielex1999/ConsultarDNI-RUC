@@ -24,12 +24,15 @@ asignara el mismo nombre de origen a la celda de Nombre Consultado (BusquedaDNI)
 | 1 | Nombre Consultado (BusquedaDNI) | Similitud (%) |
 | 2 |                                 |               |
 
-> [!CaUTION]
-> Para determinar el porcentaje de similud se necesita que los valores de la celda G (Nombre Completo) tenga como orden
-> Nombre y Apellido, más no Apellido y Nombre.
+> [!CAUTION]
+> Para determinar el porcentaje de similitud se necesita que los valores de la celda G (Nombre Completo) tenga como
+> orden Nombre y Apellido, más no Apellido y Nombre. A continuación se brindará un ejemplo
 
-
-
+|   | G                 | H                               | I             |
+|---|-------------------|---------------------------------|---------------|
+| 1 | Nombre Completo   | Nombre Consultado (BusquedaDNI) | Similitud (%) |
+| 2 | Juan Cavero Tovar | Juan Daniel Cavero Tovar        | 100% ✅        |
+| 3 | Cavero Tovar Juan | Juan Daniel Cavero Tovar        | 50% ❌         |
 
 > [!NOTE]
 > Se está utilizando para este proyecto las siguientes tecnologías.
