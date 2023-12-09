@@ -1,6 +1,5 @@
 ## Consultar RUC por DNI
 
-- Test
-
 > [!NOTE]
-> Esto es un test
+> Se está utilizando para este proyecto 
+> JDK 11 - Selenium
