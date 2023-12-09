@@ -2,10 +2,8 @@
 
 ## Consultar RUC <img src="https://cdn.iconscout.com/icon/free/png-512/java-43-569305.png" width="35px" alt="java" align="right">
 
-
----
 Para este proyecto se busca mediante un Excel ver los DNI registrados, Nombre Completo y RUC en caso de que este
-registrado para validar si se encuentra de manera corecta, el documento no pertenece o el documento no existe.
+registrado para validar si se encuentra de manera correcta, el documento no pertenece o el documento no existe.
 
 El proyecto debe de tener el excel estructurado de la siguiente manera:
 
