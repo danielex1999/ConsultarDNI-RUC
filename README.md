@@ -1,5 +1,9 @@
-## Consultar RUC por DNI
+ 
 
+## Consultar RUC <img src="https://cdn.iconscout.com/icon/free/png-512/java-43-569305.png" width="35px" alt="java" align="right">
+
+
+---
 Para este proyecto se busca mediante un Excel ver los DNI registrados, Nombre Completo y RUC en caso de que este
 registrado para validar si se encuentra de manera corecta, el documento no pertenece o el documento no existe.
 
@@ -34,8 +38,17 @@ asignara el mismo nombre de origen a la celda de Nombre Consultado (BusquedaDNI)
 | 2 | Juan Cavero Tovar | Juan Daniel Cavero Tovar        | 100% ✅        |
 | 3 | Cavero Tovar Juan | Juan Daniel Cavero Tovar        | 50% ❌         |
 
-El porcentaje de similitud en este proyecto es del 65%, esto permite para mas adelante validar que el RUC sea del DNI y
+El porcentaje de similitud en este proyecto es del 65%, esto permite para más adelante validar que el RUC sea del DNI y
 persona correcta; asi como registrar el status que debería de tener la persona a validar
+
+> [!IMPORTANT]
+> Actualmente el proyecto se encuentra avanzado hasta la sección de Nombre Consultado (BusquedaDNI), se esta
+> desarrollando actualmente el segmento de Similitud (%)
+
+---
+<div align="center">
+<img src="src/img/resting.jpg" width="60%" alt="resting"/>
+</div>
 > [!NOTE]
 > Se está utilizando para este proyecto las siguientes tecnologías.
 
