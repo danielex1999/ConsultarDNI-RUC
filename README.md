@@ -1,3 +1,6 @@
-## Consultar RUC por Nombre
+## Consultar RUC por DNI
 
 - Test
+
+> [!NOTE]
+> Esto es un test
