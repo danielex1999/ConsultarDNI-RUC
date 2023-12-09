@@ -26,7 +26,7 @@ asignara el mismo nombre de origen a la celda de Nombre Consultado (BusquedaDNI)
 
 > [!CAUTION]
 > Para determinar el porcentaje de similitud se necesita que los valores de la celda G (Nombre Completo) tenga como
-> orden Nombre y Apellido, más no Apellido y Nombre. A continuación se brindará un ejemplo
+> orden Nombre y Apellido, más no Apellido y Nombre. A continuación se brindará un ejemplo:
 
 |   | G                 | H                               | I             |
 |---|-------------------|---------------------------------|---------------|
@@ -34,6 +34,8 @@ asignara el mismo nombre de origen a la celda de Nombre Consultado (BusquedaDNI)
 | 2 | Juan Cavero Tovar | Juan Daniel Cavero Tovar        | 100% ✅        |
 | 3 | Cavero Tovar Juan | Juan Daniel Cavero Tovar        | 50% ❌         |
 
+El porcentaje de similitud en este proyecto es del 65%, esto permite para mas adelante validar que el RUC sea del DNI y
+persona correcta; asi como registrar el status que debería de tener la persona a validar
 > [!NOTE]
 > Se está utilizando para este proyecto las siguientes tecnologías.
 
