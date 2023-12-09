@@ -47,7 +47,7 @@ persona correcta; asi como registrar el status que debería de tener la persona 
 
 ---
 <div align="center">
-<img src="src/img/resting.jpg" width="60%" alt="resting"/>
+<img src="src/img/resting.jpg" width="40%" alt="resting"/>
 </div>
 > [!NOTE]
 > Se está utilizando para este proyecto las siguientes tecnologías.
