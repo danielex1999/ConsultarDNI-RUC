@@ -1,6 +1,9 @@
 package DNI;
 
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.openqa.selenium.By;
@@ -10,7 +13,7 @@ import org.openqa.selenium.WebElement;
 public class BusquedaDNI {
 
 
-    public String AsignarNombreCompleto(XSSFCell DNI, XSSFRow row, WebDriver driver) {
+    public String AsignarNombreCompleto(XSSFCell DNI, XSSFCell NOMBRECOMPLETO, XSSFRow row, WebDriver driver) {
 
         String valorDNI = "";
 
@@ -21,12 +24,16 @@ public class BusquedaDNI {
                 valorDNI = "---";
             } else {
                 if (valorDNI.length() != 8 && valorDNI.length() > 1) {
-                    valorDNI = String.format("%08d", Integer.parseInt(valorDNI));
+                    try {
+                        int numericValue = Integer.parseInt(valorDNI);
+                        valorDNI = String.format("%08d", numericValue);
+                    } catch (NumberFormatException e) {
+                    }
                 }
             }
         } else {
             DNI = row.createCell(3);
-            DNI.setCellValue("---");
+            valorDNI = "---";
         }
 
         DNI.setCellValue(valorDNI);
@@ -45,15 +52,18 @@ public class BusquedaDNI {
         } catch (org.openqa.selenium.NoSuchElementException e) {
             // El elemento no está presente
         }
-
+        XSSFCell cellFullName = row.createCell(7);
         if (fullNameElement != null && fullNameElement.isDisplayed()) {
             fullName = fullNameElement.getAttribute("value");
-            XSSFCell cellFullName = row.createCell(7);
             cellFullName.setCellValue(fullName);
             return fullName;
         } else {
-            XSSFCell cellFullName = row.createCell(7);
-            cellFullName.setCellValue("No se encontró el número de DNI");
+            CellStyle orangeCellStyle = cellFullName.getSheet().getWorkbook().createCellStyle();
+            orangeCellStyle.setFillForegroundColor(IndexedColors.ORANGE.getIndex());
+            orangeCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            cellFullName.setCellStyle(orangeCellStyle);
+
+            cellFullName.setCellValue(NOMBRECOMPLETO.getStringCellValue());
             return null;
         }
     }

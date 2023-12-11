@@ -7,6 +7,8 @@
  */
 
 import DNI.BusquedaDNI;
+import DNI.PercentSimilitud;
+import excel.GeneracionCampos;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -21,17 +23,20 @@ import java.io.IOException;
 
 public class ConsultarDNIRUC {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         //Declaración de variables
         String rutaChromeDriver = "C:\\Users\\danie\\Documents\\chromedriver.exe";
-        String rutaExcel = "C:\\Users\\danie\\Desktop\\Pruebas.xlsx";
-        Integer filaInicio = 2, filaFinal = 10;
-        XSSFCell RUC, DNI, STATUS, NOMBRE;
+        String rutaExcel = "C:\\Users\\danie\\Desktop\\CONSULTA RUC 10-12 PROVINCIA.xlsx";
+        Integer filaInicio = 2, filaFinal = 1206;
+        XSSFCell RUC, DNI, STATUS, NOMBRECOMPLETO,NOMBRECONSULTADO,SIMILITUD;
         BusquedaDNI busquedaDNI = new BusquedaDNI();
+        PercentSimilitud percentSimilitud = new PercentSimilitud();
+        GeneracionCampos generacionCampos = new GeneracionCampos();
 
         FileInputStream fis = new FileInputStream(rutaExcel);
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
         XSSFSheet sheet = workbook.getSheetAt(0);
+        generacionCampos.CreacionCeldaFila(sheet);
         System.setProperty("webdriver.chrome.driver", rutaChromeDriver);
         WebDriver driver = new ChromeDriver();
 
@@ -41,9 +46,13 @@ public class ConsultarDNIRUC {
             RUC = row.getCell(2);
             DNI = row.getCell(3);
             STATUS = row.getCell(4);
-            NOMBRE = row.getCell(6);
-            busquedaDNI.AsignarNombreCompleto(DNI,row,driver);
+            NOMBRECOMPLETO = row.getCell(6);
+            SIMILITUD= row.getCell(8);
 
+            busquedaDNI.AsignarNombreCompleto(DNI, NOMBRECOMPLETO, row, driver);
+            NOMBRECONSULTADO= row.getCell(7);
+            percentSimilitud.PorcentajeSimilitud(NOMBRECOMPLETO,NOMBRECONSULTADO,0.65,row);
+            System.out.println("Se realizo la Celda = " + i);
             saveWorkbook(workbook, rutaExcel);
         }
 
