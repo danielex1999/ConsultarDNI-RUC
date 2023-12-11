@@ -1,6 +1,7 @@
 package DNI;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.similarity.JaroWinklerSimilarity;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
@@ -10,7 +11,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 
 public class PercentSimilitud {
     public void PorcentajeSimilitud(XSSFCell NOMBRECOMPLETO, XSSFCell NOMBRECONSULTADO, Double umbralValor, XSSFRow row ) {
-        double similitud = StringUtils.getJaroWinklerDistance(NOMBRECOMPLETO.getStringCellValue().toUpperCase(), NOMBRECONSULTADO.getStringCellValue().toUpperCase());
+        JaroWinklerSimilarity jaroWinklerSimilarity = new JaroWinklerSimilarity();
+        double similitud = jaroWinklerSimilarity.apply(NOMBRECOMPLETO.getStringCellValue().toLowerCase(),NOMBRECONSULTADO.getStringCellValue().toLowerCase());
         String formattedSimilitud = String.format("%.2f", similitud*100);
         XSSFCell CrearSimilitud = row.createCell(8);
         CrearSimilitud.setCellValue(formattedSimilitud +"%");
