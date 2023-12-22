@@ -27,7 +27,7 @@ public class ConsultarDNIRUC {
         //Declaración de variables
         String rutaChromeDriver = "C:\\Users\\danie\\Documents\\chromedriver.exe";
         String rutaExcel = "C:\\Users\\danie\\OneDrive\\Escritorio\\VALIDACION 2212.xlsx";
-        Integer filaInicio = 2, filaFinal = 178;
+        int filaInicio = 2, filaFinal = 178;
         XSSFCell RUC, DNI, STATUS, NOMBRECOMPLETO,NOMBRECONSULTADO,SIMILITUD;
         BusquedaDNI busquedaDNI = new BusquedaDNI();
         PercentSimilitud percentSimilitud = new PercentSimilitud();
@@ -51,7 +51,7 @@ public class ConsultarDNIRUC {
 
             busquedaDNI.AsignarNombreCompleto(DNI, NOMBRECOMPLETO, row, driver);
             NOMBRECONSULTADO= row.getCell(7);
-            percentSimilitud.PorcentajeSimilitud(NOMBRECOMPLETO,NOMBRECONSULTADO,0.65,row);
+            percentSimilitud.PorcentajeSimilitud(NOMBRECOMPLETO,NOMBRECONSULTADO, row);
             System.out.println("Se realizo la Celda = " + i);
             saveWorkbook(workbook, rutaExcel);
         }

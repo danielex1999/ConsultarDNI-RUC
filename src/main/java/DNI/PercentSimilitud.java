@@ -10,7 +10,7 @@ import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 
 public class PercentSimilitud {
-    public void PorcentajeSimilitud(XSSFCell NOMBRECOMPLETO, XSSFCell NOMBRECONSULTADO, Double umbralValor, XSSFRow row ) {
+    public void PorcentajeSimilitud(XSSFCell NOMBRECOMPLETO, XSSFCell NOMBRECONSULTADO, XSSFRow row ) {
         JaroWinklerSimilarity jaroWinklerSimilarity = new JaroWinklerSimilarity();
         double similitud = jaroWinklerSimilarity.apply(NOMBRECOMPLETO.getStringCellValue().toLowerCase(),NOMBRECONSULTADO.getStringCellValue().toLowerCase());
         String formattedSimilitud = String.format("%.2f", similitud*100);

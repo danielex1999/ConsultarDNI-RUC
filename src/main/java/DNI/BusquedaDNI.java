@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
 public class BusquedaDNI {
 
 
-    public String AsignarNombreCompleto(XSSFCell DNI, XSSFCell NOMBRECOMPLETO, XSSFRow row, WebDriver driver) {
+    public void AsignarNombreCompleto(XSSFCell DNI, XSSFCell NOMBRECOMPLETO, XSSFRow row, WebDriver driver) {
 
         String valorDNI = "";
 
@@ -27,7 +27,7 @@ public class BusquedaDNI {
                     try {
                         int numericValue = Integer.parseInt(valorDNI);
                         valorDNI = String.format("%08d", numericValue);
-                    } catch (NumberFormatException e) {
+                    } catch (NumberFormatException ignored) {
                     }
                 }
             }
@@ -56,18 +56,12 @@ public class BusquedaDNI {
         if (fullNameElement != null && fullNameElement.isDisplayed()) {
             fullName = fullNameElement.getAttribute("value");
             cellFullName.setCellValue(fullName);
-            return fullName;
         } else {
             CellStyle orangeCellStyle = cellFullName.getSheet().getWorkbook().createCellStyle();
             orangeCellStyle.setFillForegroundColor(IndexedColors.ORANGE.getIndex());
             orangeCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cellFullName.setCellStyle(orangeCellStyle);
-
             cellFullName.setCellValue(NOMBRECOMPLETO.getStringCellValue());
-            return null;
         }
     }
 }
-
-
-
