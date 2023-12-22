@@ -26,8 +26,8 @@ public class ConsultarDNIRUC {
     public static void main(String[] args) throws IOException, InterruptedException {
         //Declaración de variables
         String rutaChromeDriver = "C:\\Users\\danie\\Documents\\chromedriver.exe";
-        String rutaExcel = "C:\\Users\\danie\\Desktop\\CONSULTA RUC 10-12 PROVINCIA.xlsx";
-        Integer filaInicio = 2, filaFinal = 1206;
+        String rutaExcel = "C:\\Users\\danie\\OneDrive\\Escritorio\\VALIDACION 2212.xlsx";
+        Integer filaInicio = 2, filaFinal = 178;
         XSSFCell RUC, DNI, STATUS, NOMBRECOMPLETO,NOMBRECONSULTADO,SIMILITUD;
         BusquedaDNI busquedaDNI = new BusquedaDNI();
         PercentSimilitud percentSimilitud = new PercentSimilitud();
