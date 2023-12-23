@@ -65,7 +65,7 @@ public class BusquedaDNI {
             assert ApellidoPaternoElement != null;
             assert ApellidoMaternoElement != null;
             assert NombresElement != null;
-            ApellidoNombre.append(ApellidoPaternoElement.getAttribute("value")+" "+ApellidoMaternoElement.getAttribute("value")+" "+NombresElement.getAttribute("value"));
+            ApellidoNombre.append(ApellidoPaternoElement.getAttribute("value")).append(" ").append(ApellidoMaternoElement.getAttribute("value")).append(" ").append(NombresElement.getAttribute("value"));
             cellLastName.setCellValue(ApellidoNombre.toString());
             cellFullName.setCellValue(fullName);
         } else {
