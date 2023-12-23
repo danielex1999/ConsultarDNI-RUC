@@ -9,10 +9,13 @@ public class GeneracionCampos {
         XSSFRow row1 = sheet.getRow(0);
         XSSFCell nuevaCelda1 = row1.createCell(7);
         XSSFCell nuevaCelda2 = row1.createCell(8);
+        XSSFCell nuevaCelda3 = row1.createCell(1);
 
         nuevaCelda1.setCellValue("Nombre Consultado (BusquedaDNI)");
         nuevaCelda2.setCellValue("Similitud (%)");
+        nuevaCelda3.setCellValue("Apellido y Nombre");
 
+        sheet.setColumnWidth(1, 50 * 256);
         sheet.setColumnWidth(2, 18 * 256);
         sheet.setColumnWidth(3, 14 * 256);
         sheet.setColumnWidth(4, 18 * 256);
