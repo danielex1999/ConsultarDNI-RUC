@@ -26,10 +26,10 @@ Por otra parte, si el DNI al ser ingresado tiene como mensaje que no se encontra
 asignara el mismo nombre de origen a la celda de **Nombre Consultado (BúsquedaDNI)** y a **Apellido - Nombre
 Consultado (BúsquedaDNI)**.
 
-|   | H                               | I             |
-|---|---------------------------------|---------------|
-| 1 | Nombre Consultado (BúsquedaDNI) | Similitud (%) |
-| 2 |                                 |               |
+|   | B                                          | H                               | I             |
+|---|--------------------------------------------|---------------------------------|---------------|
+| 1 | Apellido - Nombre Consultado (BúsquedaDNI) | Nombre Consultado (BúsquedaDNI) | Similitud (%) |
+| 2 |                                            |                                 |               |
 
 El porcentaje de similitud en este proyecto es del 65%, esto permite para más adelante validar que el RUC sea del DNI y
 persona correcta; asi como registrar el status que debería de tener la persona a validar
