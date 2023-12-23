@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
 public class BusquedaDNI {
 
 
-    public String AsignarNombreCompleto(XSSFCell DNI, XSSFCell NOMBRECOMPLETO, XSSFRow row, WebDriver driver) {
+    public void AsignarNombreCompleto(XSSFCell DNI, XSSFCell NOMBRECOMPLETO, XSSFRow row, WebDriver driver) {
 
         String valorDNI = "";
 
@@ -27,7 +27,7 @@ public class BusquedaDNI {
                     try {
                         int numericValue = Integer.parseInt(valorDNI);
                         valorDNI = String.format("%08d", numericValue);
-                    } catch (NumberFormatException e) {
+                    } catch (NumberFormatException ignored) {
                     }
                 }
             }
@@ -45,29 +45,37 @@ public class BusquedaDNI {
         buttonElement.click();
 
         String fullName = "";
+        StringBuilder ApellidoNombre= new StringBuilder();
 
-        WebElement fullNameElement = null;
+        WebElement fullNameElement = null, ApellidoPaternoElement = null, ApellidoMaternoElement = null, NombresElement = null;
         try {
             fullNameElement = driver.findElement(By.id("completos"));
+            ApellidoPaternoElement = driver.findElement(By.id("apellidop"));
+            ApellidoMaternoElement = driver.findElement(By.id("apellidom"));
+            NombresElement = driver.findElement(By.id("nombres"));
+
         } catch (org.openqa.selenium.NoSuchElementException e) {
             // El elemento no está presente
         }
         XSSFCell cellFullName = row.createCell(7);
+        XSSFCell cellLastName = row.createCell(1);
+
         if (fullNameElement != null && fullNameElement.isDisplayed()) {
             fullName = fullNameElement.getAttribute("value");
+            assert ApellidoPaternoElement != null;
+            assert ApellidoMaternoElement != null;
+            assert NombresElement != null;
+            ApellidoNombre.append(ApellidoPaternoElement.getAttribute("value")+" "+ApellidoMaternoElement.getAttribute("value")+" "+NombresElement.getAttribute("value"));
+            cellLastName.setCellValue(ApellidoNombre.toString());
             cellFullName.setCellValue(fullName);
-            return fullName;
         } else {
             CellStyle orangeCellStyle = cellFullName.getSheet().getWorkbook().createCellStyle();
             orangeCellStyle.setFillForegroundColor(IndexedColors.ORANGE.getIndex());
             orangeCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cellFullName.setCellStyle(orangeCellStyle);
-
+            cellLastName.setCellStyle(orangeCellStyle);
             cellFullName.setCellValue(NOMBRECOMPLETO.getStringCellValue());
-            return null;
+            cellLastName.setCellValue(NOMBRECOMPLETO.getStringCellValue());
         }
     }
 }
-
-
-
