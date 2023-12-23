@@ -31,7 +31,6 @@ Consultado (BúsquedaDNI)**.
 | 1 | Nombre Consultado (BúsquedaDNI) | Similitud (%) |
 | 2 |                                 |               |
 
-
 El porcentaje de similitud en este proyecto es del 65%, esto permite para más adelante validar que el RUC sea del DNI y
 persona correcta; asi como registrar el status que debería de tener la persona a validar
 
