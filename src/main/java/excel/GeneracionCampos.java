@@ -13,7 +13,7 @@ public class GeneracionCampos {
 
         nuevaCelda1.setCellValue("Nombre Consultado (BusquedaDNI)");
         nuevaCelda2.setCellValue("Similitud (%)");
-        nuevaCelda3.setCellValue("Apellido y Nombre");
+        nuevaCelda3.setCellValue("Apellido - Nombre Consultado (BusquedaDNI)");
 
         sheet.setColumnWidth(1, 50 * 256);
         sheet.setColumnWidth(2, 18 * 256);
