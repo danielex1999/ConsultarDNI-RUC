@@ -8,6 +8,7 @@
 
 import DNI.BusquedaDNI;
 import DNI.PercentSimilitud;
+import RUC.BusquedaRUC;
 import excel.GeneracionCampos;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -26,12 +27,13 @@ public class ConsultarDNIRUC {
     public static void main(String[] args) throws IOException, InterruptedException {
         //Declaración de variables
         String rutaChromeDriver = "C:\\Users\\danie\\Documents\\chromedriver.exe";
-        String rutaExcel = "C:\\Users\\danie\\OneDrive\\Escritorio\\VALIDACION 2212 PROVINCIA.xlsx";
-        int filaInicio = 2, filaFinal = 2;
+        String rutaExcel = "C:\\Users\\danie\\OneDrive\\Escritorio\\VALIDACION 2612 PROVINCIA.xlsx";
+        int filaInicio = 2, filaFinal = 60;
         XSSFCell RUC, DNI, STATUS, NOMBRECOMPLETO,NOMBRECONSULTADO,SIMILITUD,APELLIDONOMBRE;
         BusquedaDNI busquedaDNI = new BusquedaDNI();
         PercentSimilitud percentSimilitud = new PercentSimilitud();
         GeneracionCampos generacionCampos = new GeneracionCampos();
+        BusquedaRUC busquedaRUC = new BusquedaRUC();
 
         FileInputStream fis = new FileInputStream(rutaExcel);
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -53,6 +55,7 @@ public class ConsultarDNIRUC {
             NOMBRECONSULTADO= row.getCell(7);
             APELLIDONOMBRE=row.getCell(1);
             percentSimilitud.PorcentajeSimilitud(NOMBRECOMPLETO,NOMBRECONSULTADO,APELLIDONOMBRE, row);
+            //busquedaRUC.AsignarRUC(DNI,APELLIDONOMBRE,RUC,row,driver);
             System.out.println("Se realizo la Celda = " + i);
             saveWorkbook(workbook, rutaExcel);
         }
