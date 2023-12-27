@@ -49,5 +49,5 @@ persona correcta; asi como registrar el status que debería de tener la persona 
 <code><a href="" target="_blank"><img src="src/img/selenium.png"	width="26px" alt="selenium"></a></code>
 <code><a href="" target="_blank"><img src="src/img/java.png"	width="30px" alt="java"></a></code>
 <code><a href="" target="_blank"><img src="src/img/Intellj.svg.png"	width="26px" alt="Intellj"></a></code>
-<code><a href="" target="_blank"><img src="src/img/excel.png"	width="26px" alt="Intellj"></a></code>
+<code><a href="" target="_blank"><img src="src/img/excel.png"	height="23px" alt="Intellj"></a></code>
 
