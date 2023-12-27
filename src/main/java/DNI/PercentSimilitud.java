@@ -10,20 +10,18 @@ import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 
 public class PercentSimilitud {
-    public void PorcentajeSimilitud(XSSFCell NOMBRECOMPLETO, XSSFCell NOMBRECONSULTADO,XSSFCell APELLIDONOMBRE, XSSFRow row ) {
+    public void PorcentajeSimilitud(XSSFRow row) {
+        XSSFCell NOMBRECOMPLETO = row.getCell(6);
+        XSSFCell NOMBRECONSULTADO = row.getCell(7);
+        XSSFCell APELLIDONOMBRE = row.getCell(1);
         JaroWinklerSimilarity jaroWinklerSimilarity = new JaroWinklerSimilarity();
 
-        double similitud1ByName = jaroWinklerSimilarity.apply(NOMBRECOMPLETO.getStringCellValue().toLowerCase(),NOMBRECONSULTADO.getStringCellValue().toLowerCase());
-        double similitudByLastName = jaroWinklerSimilarity.apply(NOMBRECOMPLETO.getStringCellValue().toLowerCase(),APELLIDONOMBRE.getStringCellValue().toLowerCase());
-        double similitud=0.0;
-        if (similitud1ByName < similitudByLastName){
-            similitud=similitudByLastName;
-        }else{
-            similitud=similitud1ByName;
-        }
-        String formattedSimilitud = String.format("%.2f", similitud*100);
+        double similitud1ByName = jaroWinklerSimilarity.apply(NOMBRECOMPLETO.getStringCellValue().toLowerCase(), NOMBRECONSULTADO.getStringCellValue().toLowerCase());
+        double similitudByLastName = jaroWinklerSimilarity.apply(NOMBRECOMPLETO.getStringCellValue().toLowerCase(), APELLIDONOMBRE.getStringCellValue().toLowerCase());
+        double similitud = Math.max(similitud1ByName, similitudByLastName);
+        String formattedSimilitud = String.format("%.2f", similitud * 100);
         XSSFCell CrearSimilitud = row.createCell(8);
-        CrearSimilitud.setCellValue(formattedSimilitud +"%");
+        CrearSimilitud.setCellValue(formattedSimilitud + "%");
 
         if (similitud < 0.65) {
             CellStyle greyCellStyle = NOMBRECONSULTADO.getSheet().getWorkbook().createCellStyle();
@@ -31,7 +29,7 @@ public class PercentSimilitud {
             greyCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             NOMBRECONSULTADO.setCellStyle(greyCellStyle);
             APELLIDONOMBRE.setCellStyle(greyCellStyle);
-        }else if (similitud >= 0.65 && similitud <= 0.7) {
+        } else if (similitud >= 0.65 && similitud <= 0.7) {
             CellStyle greyCellStyle = NOMBRECONSULTADO.getSheet().getWorkbook().createCellStyle();
             greyCellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
             greyCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);

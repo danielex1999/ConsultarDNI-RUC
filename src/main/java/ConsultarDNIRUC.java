@@ -10,6 +10,7 @@ import DNI.BusquedaDNI;
 import DNI.PercentSimilitud;
 import RUC.BusquedaRUC;
 import excel.GeneracionCampos;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -27,9 +28,9 @@ public class ConsultarDNIRUC {
     public static void main(String[] args) throws IOException, InterruptedException {
         //Declaración de variables
         String rutaChromeDriver = "C:\\Users\\danie\\Documents\\chromedriver.exe";
-        String rutaExcel = "C:\\Users\\danie\\OneDrive\\Escritorio\\VALIDACION 2612 PROVINCIA.xlsx";
-        int filaInicio = 2, filaFinal = 60;
-        XSSFCell RUC, DNI, STATUS, NOMBRECOMPLETO,NOMBRECONSULTADO,SIMILITUD,APELLIDONOMBRE;
+        String rutaExcel = "C:\\Users\\danie\\OneDrive\\Escritorio\\VALIDACION 2612 LIMA.xlsx";
+        int filaInicio = 2, filaFinal = 98;
+        XSSFCell RUC, DNI, STATUS, NOMBRECOMPLETO, NOMBRECONSULTADO, SIMILITUD, APELLIDONOMBRE;
         BusquedaDNI busquedaDNI = new BusquedaDNI();
         PercentSimilitud percentSimilitud = new PercentSimilitud();
         GeneracionCampos generacionCampos = new GeneracionCampos();
@@ -45,18 +46,12 @@ public class ConsultarDNIRUC {
 
         for (int i = filaInicio; i <= filaFinal; i++) {
             XSSFRow row = sheet.getRow(i - 1);
-            RUC = row.getCell(2);
-            DNI = row.getCell(3);
-            STATUS = row.getCell(4);
-            NOMBRECOMPLETO = row.getCell(6);
-            SIMILITUD= row.getCell(8);
-
-            busquedaDNI.AsignarNombreCompleto(DNI, NOMBRECOMPLETO, row, driver);
-            NOMBRECONSULTADO= row.getCell(7);
-            APELLIDONOMBRE=row.getCell(1);
-            percentSimilitud.PorcentajeSimilitud(NOMBRECOMPLETO,NOMBRECONSULTADO,APELLIDONOMBRE, row);
-            //busquedaRUC.AsignarRUC(DNI,APELLIDONOMBRE,RUC,row,driver);
-            System.out.println("Se realizo la Celda = " + i);
+            STATUS = row.createCell(4, CellType.STRING);
+            Thread.sleep(2000);
+            busquedaDNI.AsignarNombreCompleto(row, driver);
+            percentSimilitud.PorcentajeSimilitud(row);
+            busquedaRUC.AsignarRUC(row, driver);
+            System.out.println("Se registro correctamente la fila " + i);
             saveWorkbook(workbook, rutaExcel);
         }
 
