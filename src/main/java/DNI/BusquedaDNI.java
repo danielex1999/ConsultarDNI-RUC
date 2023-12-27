@@ -1,9 +1,6 @@
 package DNI;
 
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.openqa.selenium.By;
@@ -13,7 +10,9 @@ import org.openqa.selenium.WebElement;
 public class BusquedaDNI {
 
 
-    public void AsignarNombreCompleto(XSSFCell DNI, XSSFCell NOMBRECOMPLETO, XSSFRow row, WebDriver driver) {
+    public void AsignarNombreCompleto(XSSFRow row, WebDriver driver) {
+        XSSFCell DNI = row.getCell(3);
+        XSSFCell NOMBRECOMPLETO = row.getCell(6);
 
         String valorDNI = "";
 
@@ -45,7 +44,7 @@ public class BusquedaDNI {
         buttonElement.click();
 
         String fullName = "";
-        StringBuilder ApellidoNombre= new StringBuilder();
+        StringBuilder ApellidoNombre = new StringBuilder();
 
         WebElement fullNameElement = null, ApellidoPaternoElement = null, ApellidoMaternoElement = null, NombresElement = null;
         try {
@@ -65,7 +64,7 @@ public class BusquedaDNI {
             assert ApellidoPaternoElement != null;
             assert ApellidoMaternoElement != null;
             assert NombresElement != null;
-            ApellidoNombre.append(ApellidoPaternoElement.getAttribute("value")+" "+ApellidoMaternoElement.getAttribute("value")+" "+NombresElement.getAttribute("value"));
+            ApellidoNombre.append(ApellidoPaternoElement.getAttribute("value")).append(" ").append(ApellidoMaternoElement.getAttribute("value")).append(" ").append(NombresElement.getAttribute("value"));
             cellLastName.setCellValue(ApellidoNombre.toString());
             cellFullName.setCellValue(fullName);
         } else {
