@@ -6,13 +6,10 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.openqa.selenium.WebDriver;
 
 public class GeneracionEstilos {
-    public void FilaDefaultStyle() {
 
-    }
-
-    public void StyleNoExisteBusquedaPorRUC(XSSFRow row, WebDriver driver) {
+    public void StyleDocNoExiste(XSSFRow row, WebDriver driver) {
         XSSFCell Status = row.getCell(4);
-
+        Status.setCellValue("DOC NO EXISTE");
         CellStyle noExisteStyle = row.getSheet().getWorkbook().createCellStyle();
         noExisteStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         noExisteStyle.setFillForegroundColor(IndexedColors.DARK_RED.getIndex());
@@ -24,6 +21,8 @@ public class GeneracionEstilos {
         XSSFCell Status = row.getCell(4);
         XSSFCell NOMBRECONSULTADO = row.getCell(7);
         XSSFCell SIMILITUD = row.getCell(8);
+        Status.setCellValue("VALIDADO");
+        SIMILITUD.setCellValue("100.00%");
 
         CellStyle normalStyle = row.getSheet().getWorkbook().createCellStyle();
         normalStyle.setFillPattern(FillPatternType.NO_FILL);
