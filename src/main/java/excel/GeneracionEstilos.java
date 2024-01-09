@@ -5,7 +5,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.openqa.selenium.WebDriver;
 
-public class GenerateStyles {
+public class GeneracionEstilos {
     public void FilaDefaultStyle() {
 
     }

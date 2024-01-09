@@ -1,15 +1,13 @@
-package DNI;
+package excel;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.similarity.JaroWinklerSimilarity;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 
-public class PercentSimilitud {
+public class PorcentajeSimilitud {
     public void PorcentajeSimilitud(XSSFRow row) {
         XSSFCell NOMBRECOMPLETO = row.getCell(6);
         XSSFCell NOMBRECONSULTADO = row.getCell(7);

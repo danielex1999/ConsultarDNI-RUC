@@ -7,11 +7,10 @@
  */
 
 import DNI.BusquedaDNI;
-import DNI.PercentSimilitud;
-import RUC.BusquedaRUC;
+import excel.PorcentajeSimilitud;
+import RUC.BusquedaRucDniGlobal;
 import excel.GeneracionCampos;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -30,11 +29,11 @@ public class ConsultarDNIRUC {
         String rutaChromeDriver = "C:\\Users\\danie\\Documents\\chromedriver.exe";
         String rutaExcel = "C:\\Users\\danie\\OneDrive\\Escritorio\\VALIDACION 2612 LIMA.xlsx";
         int filaInicio = 2, filaFinal = 98;
-        XSSFCell RUC, DNI, STATUS, NOMBRECOMPLETO, NOMBRECONSULTADO, SIMILITUD, APELLIDONOMBRE;
+        //XSSFCell RUC, DNI, STATUS, NOMBRECOMPLETO, NOMBRECONSULTADO, SIMILITUD, APELLIDONOMBRE;
         BusquedaDNI busquedaDNI = new BusquedaDNI();
-        PercentSimilitud percentSimilitud = new PercentSimilitud();
+        PorcentajeSimilitud porcentajeSimilitud = new PorcentajeSimilitud();
         GeneracionCampos generacionCampos = new GeneracionCampos();
-        BusquedaRUC busquedaRUC = new BusquedaRUC();
+        BusquedaRucDniGlobal busquedaRUC = new BusquedaRucDniGlobal();
 
         FileInputStream fis = new FileInputStream(rutaExcel);
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -46,10 +45,10 @@ public class ConsultarDNIRUC {
 
         for (int i = filaInicio; i <= filaFinal; i++) {
             XSSFRow row = sheet.getRow(i - 1);
-            STATUS = row.createCell(4, CellType.STRING);
+            row.createCell(4, CellType.STRING);
             Thread.sleep(2000);
             busquedaDNI.AsignarNombreCompleto(row, driver);
-            percentSimilitud.PorcentajeSimilitud(row);
+            porcentajeSimilitud.PorcentajeSimilitud(row);
             busquedaRUC.AsignarRUC(row, driver);
             System.out.println("Se registro correctamente la fila " + i);
             saveWorkbook(workbook, rutaExcel);
