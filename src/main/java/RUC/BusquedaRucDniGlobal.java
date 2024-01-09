@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BusquedaRucDniGlobal {
 
-    public void AsignarRUC(XSSFRow row, WebDriver driver) {
+    public void AsignarRUC(XSSFRow row, WebDriver driver) throws InterruptedException {
         //Insertando valores de RUC, DNI, APELLIDO Y NOMBRE
         XSSFCell RUC = row.getCell(2);
 
@@ -18,7 +18,6 @@ public class BusquedaRucDniGlobal {
 
 
         driver.get("https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/FrameCriterioBusquedaWeb.jsp");
-
 
         if (RUC != null) {
             double rucValue = RUC.getNumericCellValue();

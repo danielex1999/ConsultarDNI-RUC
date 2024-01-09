@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 public class GeneracionEstilos {
 
-    public void StyleDocNoExiste(XSSFRow row, WebDriver driver) {
+    public void StyleDocNoExiste(XSSFRow row) {
         XSSFCell Status = row.getCell(4);
         Status.setCellValue("DOC NO EXISTE");
         CellStyle noExisteStyle = row.getSheet().getWorkbook().createCellStyle();
@@ -16,7 +16,7 @@ public class GeneracionEstilos {
         noExisteStyle.setAlignment(HorizontalAlignment.CENTER);
     }
 
-    public void StyleBusquedaPorRUC(XSSFRow row, WebDriver driver) {
+    public void StyleValidadoRUC2xxx(XSSFRow row) {
         XSSFCell APELLIDONOMBRE = row.getCell(1);
         XSSFCell Status = row.getCell(4);
         XSSFCell NOMBRECONSULTADO = row.getCell(7);

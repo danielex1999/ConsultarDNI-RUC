@@ -27,8 +27,8 @@ public class ConsultarDNIRUC {
     public static void main(String[] args) throws IOException, InterruptedException {
         //Declaración de variables
         String rutaChromeDriver = "C:\\Users\\danie\\Documents\\chromedriver.exe";
-        String rutaExcel = "C:\\Users\\danie\\OneDrive\\Escritorio\\VALIDACION 2612 LIMA.xlsx";
-        int filaInicio = 2, filaFinal = 98;
+        String rutaExcel = "C:\\Users\\danie\\OneDrive\\Escritorio\\CONSULTA RUC 1912.xlsx";
+        int filaInicio = 2, filaFinal = 140;
         //XSSFCell RUC, DNI, STATUS, NOMBRECOMPLETO, NOMBRECONSULTADO, SIMILITUD, APELLIDONOMBRE;
         BusquedaDNI busquedaDNI = new BusquedaDNI();
         PorcentajeSimilitud porcentajeSimilitud = new PorcentajeSimilitud();
@@ -46,7 +46,6 @@ public class ConsultarDNIRUC {
         for (int i = filaInicio; i <= filaFinal; i++) {
             XSSFRow row = sheet.getRow(i - 1);
             row.createCell(4, CellType.STRING);
-            Thread.sleep(2000);
             busquedaDNI.AsignarNombreCompleto(row, driver);
             porcentajeSimilitud.PorcentajeSimilitud(row);
             busquedaRUC.AsignarRUC(row, driver);
