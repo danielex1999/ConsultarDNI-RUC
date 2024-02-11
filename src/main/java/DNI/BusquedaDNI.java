@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 public class BusquedaDNI {
 
 
-    public void AsignarNombreCompleto(XSSFRow row, WebDriver driver) {
+    public void AsignarNombreCompleto(XSSFRow row, WebDriver driver) throws InterruptedException {
         XSSFCell DNI = row.getCell(3);
         XSSFCell NOMBRECOMPLETO = row.getCell(6);
 

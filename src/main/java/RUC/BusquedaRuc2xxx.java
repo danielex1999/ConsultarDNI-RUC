@@ -12,6 +12,7 @@ public class BusquedaRuc2xxx {
     public void AsignarRUC2xxx(XSSFRow row, WebDriver driver, String rucString) {
         //Insertando valores de RUC, DNI, APELLIDO Y NOMBRE
         XSSFCell APELLIDONOMBRE = row.getCell(1);
+        XSSFCell DNI = row.getCell(3);
         XSSFCell NOMBRECONSULTADO = row.getCell(7);
         GeneracionEstilos generacionEstilos = new GeneracionEstilos();
 
@@ -33,6 +34,7 @@ public class BusquedaRuc2xxx {
             String elementText = nombreRazonSocial.getText().substring(14);
             APELLIDONOMBRE.setCellValue(elementText);
             NOMBRECONSULTADO.setCellValue(elementText);
+            DNI.setCellValue("");
             generacionEstilos.StyleValidadoRUC2xxx(row);
         }
     }

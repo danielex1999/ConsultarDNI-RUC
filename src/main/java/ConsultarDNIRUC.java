@@ -14,12 +14,19 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class ConsultarDNIRUC {
@@ -27,8 +34,8 @@ public class ConsultarDNIRUC {
     public static void main(String[] args) throws IOException, InterruptedException {
         //Declaración de variables
         String rutaChromeDriver = "C:\\Users\\danie\\Documents\\chromedriver.exe";
-        String rutaExcel = "C:\\Users\\danie\\OneDrive\\Escritorio\\CONSULTA RUC 1912.xlsx";
-        int filaInicio = 2, filaFinal = 140;
+        String rutaExcel = "C:\\Users\\danie\\OneDrive\\Escritorio\\VALIDACION 10022024 LIMA.xlsx";
+        int filaInicio = 15, filaFinal = 20;
         //XSSFCell RUC, DNI, STATUS, NOMBRECOMPLETO, NOMBRECONSULTADO, SIMILITUD, APELLIDONOMBRE;
         BusquedaDNI busquedaDNI = new BusquedaDNI();
         PorcentajeSimilitud porcentajeSimilitud = new PorcentajeSimilitud();
@@ -40,14 +47,18 @@ public class ConsultarDNIRUC {
         XSSFSheet sheet = workbook.getSheetAt(0);
         generacionCampos.CreacionCeldaFila(sheet);
         System.setProperty("webdriver.chrome.driver", rutaChromeDriver);
-        WebDriver driver = new ChromeDriver();
-
+        ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("excludeSwitches", List.of("enable-automation"));
+        options.addArguments("--disable-features=EnableAutomation");
+        WebDriver driver = new ChromeDriver(options);
 
         for (int i = filaInicio; i <= filaFinal; i++) {
             XSSFRow row = sheet.getRow(i - 1);
             row.createCell(4, CellType.STRING);
             busquedaDNI.AsignarNombreCompleto(row, driver);
             porcentajeSimilitud.PorcentajeSimilitud(row);
+            int tiempoEspera = (int) (Math.random() * 2) + 4; // Genera un número aleatorio entre 2 y 6
+            TimeUnit.SECONDS.sleep(tiempoEspera);
             busquedaRUC.AsignarRUC(row, driver);
             System.out.println("Se registro correctamente la fila " + i);
             saveWorkbook(workbook, rutaExcel);
