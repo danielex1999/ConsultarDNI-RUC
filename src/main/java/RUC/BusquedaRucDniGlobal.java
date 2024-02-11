@@ -31,7 +31,7 @@ public class BusquedaRucDniGlobal {
             }
         } else {
             // Manejo si la celda RUC es null
-            System.out.println("test");
+            System.out.println("La celda de RUC se encuentra vacía");
         }
     }
 }
