@@ -5,25 +5,24 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.openqa.selenium.WebDriver;
 
-public class GenerateStyles {
-    public void FilaDefaultStyle() {
+public class GeneracionEstilos {
 
-    }
-
-    public void StyleNoExisteBusquedaPorRUC(XSSFRow row, WebDriver driver) {
+    public void StyleDocNoExiste(XSSFRow row) {
         XSSFCell Status = row.getCell(4);
-
+        Status.setCellValue("DOC NO EXISTE");
         CellStyle noExisteStyle = row.getSheet().getWorkbook().createCellStyle();
         noExisteStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         noExisteStyle.setFillForegroundColor(IndexedColors.DARK_RED.getIndex());
         noExisteStyle.setAlignment(HorizontalAlignment.CENTER);
     }
 
-    public void StyleBusquedaPorRUC(XSSFRow row, WebDriver driver) {
+    public void StyleValidadoRUC2xxx(XSSFRow row) {
         XSSFCell APELLIDONOMBRE = row.getCell(1);
         XSSFCell Status = row.getCell(4);
         XSSFCell NOMBRECONSULTADO = row.getCell(7);
         XSSFCell SIMILITUD = row.getCell(8);
+        Status.setCellValue("VALIDADO");
+        SIMILITUD.setCellValue("100.00%");
 
         CellStyle normalStyle = row.getSheet().getWorkbook().createCellStyle();
         normalStyle.setFillPattern(FillPatternType.NO_FILL);
